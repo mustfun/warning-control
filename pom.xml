@@ -5,7 +5,7 @@
 
 	<groupId>com.github.mustfun</groupId>
 	<artifactId>warning-control</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>warning-control</name>
