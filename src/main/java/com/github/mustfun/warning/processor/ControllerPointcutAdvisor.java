@@ -21,7 +21,6 @@ import static org.springframework.aop.framework.autoproxy.AutoProxyUtils.PRESERV
  * @date 2018/2/8
  * @since 1.0
  */
-@Component
 public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
 
     private static final Logger LOG = LoggerFactory.getLogger(ControllerPointcutAdvisor.class);

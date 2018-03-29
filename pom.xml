@@ -51,6 +51,14 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
 		<!-- slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -81,7 +89,7 @@
 
 	</dependencies>
 
-	<distributionManagement>
+<!--	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -90,6 +98,19 @@
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
+	</distributionManagement>-->
+
+	<distributionManagement>
+		<repository>
+			<id>local-maven-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>local-maven-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 

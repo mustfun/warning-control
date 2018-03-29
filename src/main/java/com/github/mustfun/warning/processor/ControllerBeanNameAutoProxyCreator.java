@@ -9,8 +9,17 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.classreading.MetadataReader;
+import org.springframework.core.type.classreading.MetadataReaderFactory;
+import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.IOException;
+import java.util.Set;
 
 import static org.springframework.aop.framework.autoproxy.AutoProxyUtils.PRESERVE_TARGET_CLASS_ATTRIBUTE;
 
@@ -21,7 +30,6 @@ import static org.springframework.aop.framework.autoproxy.AutoProxyUtils.PRESERV
  * @Version: 1.0
  * @since: JDK 1.8
  */
-@Component
 public class ControllerBeanNameAutoProxyCreator extends BeanNameAutoProxyCreator implements BeanFactoryPostProcessor {
 
    private static final Logger LOG = LoggerFactory.getLogger(ControllerBeanNameAutoProxyCreator.class);

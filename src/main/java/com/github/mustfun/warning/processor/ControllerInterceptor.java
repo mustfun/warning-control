@@ -19,7 +19,6 @@ import java.lang.reflect.Method;
  * @date 2018/2/8
  * @since 1.0
  */
-@Component
 public class ControllerInterceptor implements MethodInterceptor, Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(ControllerInterceptor.class);
