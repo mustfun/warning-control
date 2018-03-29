@@ -1,0 +1,7 @@
+# Application Context Initializers
+org.springframework.context.ApplicationContextInitializer=\
+com.github.mustfun.warning.processor.WarningControlContextInitializer
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.github.mustfun.warning.config.WarningControlConfig

@@ -14,6 +14,6 @@ public class WarningControlContextInitializer implements ApplicationContextIniti
     @Override
     public void initialize(ConfigurableApplicationContext context) {
         context.addBeanFactoryPostProcessor(
-                new WarningControlConfig());
+                new WarningControlPostProcessor());
     }
 }

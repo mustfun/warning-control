@@ -20,7 +20,7 @@ import java.util.Set;
  * @date 2018/3/29
  * @since 1.0
  */
-public class WarningControlConfig implements BeanDefinitionRegistryPostProcessor,InitializingBean {
+public class WarningControlPostProcessor implements BeanDefinitionRegistryPostProcessor,InitializingBean {
 
 
     @Override
