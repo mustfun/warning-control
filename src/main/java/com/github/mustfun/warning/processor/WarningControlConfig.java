@@ -1,6 +1,7 @@
 package com.github.mustfun.warning.processor;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -19,14 +20,14 @@ import java.util.Set;
  * @date 2018/3/29
  * @since 1.0
  */
-public class WarningControlConfig implements BeanDefinitionRegistryPostProcessor {
+public class WarningControlConfig implements BeanDefinitionRegistryPostProcessor,InitializingBean {
 
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         //是否使用默认的filter，使用默认的filter意味着只扫描那些类上拥有Component、Service、Repository或Controller注解的类
         boolean useDefaultFilters = false;
-        String basePackage = "com.github.mustfun.warning";
+        String basePackage = "com.github.mustfun.warning.processor";
         ClassPathScanningCandidateComponentProvider beanScanner = new ClassPathScanningCandidateComponentProvider(useDefaultFilters);
         TypeFilter includeFilter = new TypeFilter() {
 
@@ -49,5 +50,9 @@ public class WarningControlConfig implements BeanDefinitionRegistryPostProcessor
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
     }
 }
