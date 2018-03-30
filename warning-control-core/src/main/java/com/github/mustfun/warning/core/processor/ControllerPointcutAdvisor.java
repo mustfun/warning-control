@@ -52,6 +52,9 @@ public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
         this.controllerInterceptor = controllerInterceptor;
     }
 
+    public ControllerPointcutAdvisor() {
+    }
+
     @Override
     public Pointcut getPointcut() {
         return this.staticMethodMatcherPointcut;
