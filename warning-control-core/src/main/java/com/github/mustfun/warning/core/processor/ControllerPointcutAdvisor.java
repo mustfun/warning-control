@@ -6,8 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractPointcutAdvisor;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.sql.DataSource;
 import javax.ws.rs.Path;
 import java.lang.reflect.Method;
 
@@ -21,7 +23,9 @@ public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
 
     private static final Logger LOG = LoggerFactory.getLogger(ControllerPointcutAdvisor.class);
 
+    @Autowired
     private ControllerInterceptor controllerInterceptor;
+
 
     private final StaticMethodMatcherPointcut staticMethodMatcherPointcut = new StaticMethodMatcherPointcut() {
         @Override

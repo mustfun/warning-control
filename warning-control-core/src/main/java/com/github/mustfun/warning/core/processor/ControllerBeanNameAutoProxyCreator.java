@@ -35,15 +35,10 @@ public class ControllerBeanNameAutoProxyCreator extends BeanNameAutoProxyCreator
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         for (Class<?> aClass : bean.getClass().getInterfaces()) {
-            LOG.info("实例化的类的接口是====="+aClass.getName()+"====当前类是"+beanName);
+            LOG.info("实例化的类的接口是=====" + aClass.getName() + "====当前类是" + beanName);
         }
-        if (beanName.contains("city")||beanName.contains("City")){
-            LOG.info("CITY接口是====="+beanName);
-            ConfigurableListableBeanFactory configurableListableBeanFactory = (ConfigurableListableBeanFactory)beanFactory;
-            BeanDefinition bd = configurableListableBeanFactory.getBeanDefinition(beanName);
-            bd.setAttribute(PRESERVE_TARGET_CLASS_ATTRIBUTE,Boolean.TRUE);
-        }
-       return super.postProcessAfterInitialization(bean, beanName);
+
+        return super.postProcessAfterInitialization(bean, beanName);
     }
 
 

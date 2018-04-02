@@ -4,8 +4,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
@@ -41,9 +43,12 @@ public class WarningControlPostProcessor implements BeanDefinitionRegistryPostPr
         };
         beanScanner.addIncludeFilter(includeFilter);
         Set<BeanDefinition> beanDefinitions = beanScanner.findCandidateComponents(basePackage);
-        for (BeanDefinition beanDefinition : beanDefinitions) {
+        for (BeanDefinition rawBeanDefinition : beanDefinitions) {
             //beanName通常由对应的BeanNameGenerator来生成，比如Spring自带的AnnotationBeanNameGenerator、DefaultBeanNameGenerator等，也可以自己实现。
+            GenericBeanDefinition beanDefinition = (GenericBeanDefinition)rawBeanDefinition;
             String beanName = beanDefinition.getBeanClassName();
+            beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+            beanDefinition.setAutowireCandidate(true);
             registry.registerBeanDefinition(beanName, beanDefinition);
         }
     }
