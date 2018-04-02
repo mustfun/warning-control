@@ -5,6 +5,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -18,6 +19,7 @@ import java.lang.reflect.Method;
  * @date 2018/2/8
  * @since 1.0
  */
+@Component
 public class ControllerInterceptor implements MethodInterceptor, Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(ControllerInterceptor.class);
