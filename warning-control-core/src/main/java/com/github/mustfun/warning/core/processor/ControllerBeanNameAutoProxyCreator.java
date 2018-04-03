@@ -1,7 +1,7 @@
 package com.github.mustfun.warning.core.processor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.mustfun.warning.core.logging.Log;
+import com.github.mustfun.warning.core.logging.LogFactory;
 import org.springframework.aop.framework.autoproxy.AutoProxyUtils;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.beans.BeansException;
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import static org.springframework.aop.framework.autoproxy.AutoProxyUtils.PRESERVE_TARGET_CLASS_ATTRIBUTE;
 
 /**
  * @author : itar
@@ -22,7 +20,7 @@ import static org.springframework.aop.framework.autoproxy.AutoProxyUtils.PRESERV
  */
 public class ControllerBeanNameAutoProxyCreator extends BeanNameAutoProxyCreator implements BeanFactoryPostProcessor {
 
-   private static final Logger LOG = LoggerFactory.getLogger(ControllerBeanNameAutoProxyCreator.class);
+   private static final Log LOG = LogFactory.getLog(ControllerBeanNameAutoProxyCreator.class);
 
    private BeanFactory beanFactory;
 

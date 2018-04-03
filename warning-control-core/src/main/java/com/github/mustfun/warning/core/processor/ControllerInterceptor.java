@@ -1,6 +1,8 @@
 package com.github.mustfun.warning.core.processor;
 
 import com.alibaba.fastjson.JSON;
+import com.github.mustfun.warning.core.logging.Log;
+import com.github.mustfun.warning.core.logging.LogFactory;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
@@ -20,7 +22,7 @@ import java.lang.reflect.Method;
  */
 public class ControllerInterceptor implements MethodInterceptor, Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ControllerInterceptor.class);
+    private static final Log LOG = LogFactory.getLog(ControllerInterceptor.class);
 
 
     @Override
@@ -31,15 +33,15 @@ public class ControllerInterceptor implements MethodInterceptor, Serializable {
         try {
             Method method = invocation.getMethod();
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-            LOG.debug("Interceptor-User-Agent: {}", request.getHeader("User-Agent"));
-            LOG.debug("Interceptor-Method: {}", method.getName());
+            LOG.debug("Interceptor-User-Agent: "+request.getHeader("User-Agent"));
+            LOG.debug("Interceptor-Method: "+method.getName() );
             url = request.getRequestURL().toString();
-            LOG.debug("Interceptor-URL: {}", url);
+            LOG.debug("Interceptor-URL: "+ url);
             message = JSON.toJSONString(request.getParameterMap());
-            LOG.debug("Interceptor-parameters to: {}", message);
+            LOG.debug("Interceptor-parameters to: "+message );
             return invocation.proceed();
         } catch (Throwable e) {
-            LOG.info("ControllerIntercepter catch到异常......准备发送邮件{}", e);
+            LOG.info("ControllerIntercepter catch到异常......准备发送邮件"+e);
             throw e;
         }
     }

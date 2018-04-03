@@ -1,8 +1,8 @@
 package com.github.mustfun.warning.core.processor;
 
+import com.github.mustfun.warning.core.logging.Log;
+import com.github.mustfun.warning.core.logging.LogFactory;
 import org.aopalliance.aop.Advice;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractPointcutAdvisor;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
@@ -21,9 +21,8 @@ import java.lang.reflect.Method;
  */
 public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
 
-    private static final Logger LOG = LoggerFactory.getLogger(ControllerPointcutAdvisor.class);
+    private static final Log LOG = LogFactory.getLog(ControllerPointcutAdvisor.class);
 
-    @Autowired
     private ControllerInterceptor controllerInterceptor;
 
 
@@ -31,7 +30,7 @@ public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
         @Override
         public boolean matches(Method method, Class<?> targetClass) {
             if (targetClass.isAnnotationPresent(Path.class)) {
-                LOG.info("captain-Advisor catch jax-rs {}", targetClass.getSimpleName());
+                LOG.info("captain-Advisor catch jax-rs "+targetClass.getSimpleName());
                 return true;
             }
             boolean hashPath = false;
@@ -41,17 +40,18 @@ public class ControllerPointcutAdvisor extends AbstractPointcutAdvisor{
                 }
             }
             if (hashPath) {
-                LOG.info("captain-Advisor catch jax-rs {}", targetClass.getSimpleName());
+                LOG.info("captain-Advisor catch jax-rs "+targetClass.getSimpleName());
                 return true;
             }
             if (targetClass.isAnnotationPresent(RequestMapping.class)) {
-                LOG.info("captain-Advisor catch springMvc {}", targetClass.getSimpleName());
+                LOG.info("captain-Advisor catch springMvc "+ targetClass.getSimpleName());
                 return true;
             }
             return false;
         }
     };
 
+    @Autowired
     public ControllerPointcutAdvisor(ControllerInterceptor controllerInterceptor) {
         this.controllerInterceptor = controllerInterceptor;
     }
