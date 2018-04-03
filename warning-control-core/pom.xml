@@ -10,6 +10,7 @@
 
 	<name>warning-control-core</name>
 	<description>a active warning systems for most of web project</description>
+	<url>https://github.com/mustfun/warning-control</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
