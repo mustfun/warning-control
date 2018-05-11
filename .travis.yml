@@ -4,5 +4,4 @@ jdk:
 sudo: false
 script: "mvn cobertura:cobertura"
 after_success:
-  - codecov
   - bash <(curl -s https://codecov.io/bash)
