@@ -3,7 +3,7 @@ jdk:
  - oraclejdk8
 sudo: false
 script:
-  - mvn clean install -e
   - mvn cobertura:cobertura
+  - echo '代码覆盖率统计完毕....'
 after_success:
   - bash <(curl -s https://codecov.io/bash)
